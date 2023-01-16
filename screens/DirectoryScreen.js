@@ -6,7 +6,6 @@ import { CAMPSITES } from '../shared/campsites';
 const DirectoryScreen = ({ navigation }) => {
     const [campsites, setCampsites] = useState(CAMPSITES);
 
-
     const renderDirectoryItem = ({ item: campsite }) => {
         return (
             <ListItem onPress={
