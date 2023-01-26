@@ -1,3 +1,4 @@
+import * as Animatable from 'react-native-animatable';
 import { ScrollView, Text } from 'react-native';
 import { Card, Avatar, ListItem } from 'react-native-elements';
 import { useSelector } from 'react-redux';
@@ -35,34 +36,46 @@ const AboutScreen = () => {
     if (partners.errMess) {
         return (
             <ScrollView>
-                <Mission />
-                <Card>
-                    <Card.Title>Community Partners</Card.Title>
-                    <Card.Divider />
-                    <Text>{partners.errMess}</Text>
-                </Card>
+                <Animatable.View
+                    animation='fadeInDown'
+                    duration={2000}
+                    delay={1000}
+                >
+                    <Mission />
+                    <Card>
+                        <Card.Title>Community Partners</Card.Title>
+                        <Card.Divider />
+                        <Text>{partners.errMess}</Text>
+                    </Card>
+                </Animatable.View>
             </ScrollView>
         );
     }
 
     return (
         <ScrollView>
+            <Animatable.View
+                animation='fadeInDown'
+                duration={2000}
+                delay={1000}
+            >
             <Mission />
-            <Card>
-                <Card.Title>Community Partners</Card.Title>
-                <Card.Divider />
-                {partners.partnersArray.map((partner) => {
-                    return (
-                        <ListItem key={partner.id}>
-                            <Avatar rounded source={{ uri: baseUrl + partner.image }} />
-                            <ListItem.Content>
-                                <ListItem.Title>{partner.name}</ListItem.Title>
-                                <ListItem.Subtitle>{partner.description}</ListItem.Subtitle>
-                            </ListItem.Content>
-                        </ListItem>
-                    );
-                })}
-            </Card>
+                <Card>
+                    <Card.Title>Community Partners</Card.Title>
+                    <Card.Divider />
+                    {partners.partnersArray.map((partner) => {
+                        return (
+                            <ListItem key={partner.id}>
+                                <Avatar rounded source={{ uri: baseUrl + partner.image }} />
+                                <ListItem.Content>
+                                    <ListItem.Title>{partner.name}</ListItem.Title>
+                                    <ListItem.Subtitle>{partner.description}</ListItem.Subtitle>
+                                </ListItem.Content>
+                            </ListItem>
+                        );
+                    })}
+                </Card>
+            </Animatable.View>
         </ScrollView>
     );
 };

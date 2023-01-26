@@ -1,10 +1,12 @@
+import * as Animatable from 'react-native-animatable';
 import { useDispatch, useSelector } from 'react-redux';
-import { View, 
-    FlatList, 
-    Text, 
-    TouchableOpacity, 
-    StyleSheet, 
-    Alert 
+import {
+    View,
+    FlatList,
+    Text,
+    TouchableOpacity,
+    StyleSheet,
+    Alert
 } from 'react-native';
 import { SwipeRow } from 'react-native-swipe-list-view';
 import { Avatar, ListItem } from 'react-native-elements';
@@ -27,19 +29,19 @@ const FavoritesScreen = ({ navigation }) => {
                         style={styles.deleteTouchable}
                         onPress={() => Alert.alert('Delete Favorite?',
                             'Are you sure you wish to delete ' + campsite.name + ' from your favorites?',
-                        [
-                            {
-                                text: 'Cancel',
-                                onPress: () => console.log(campsite.name + 'Not Deleted'),
-                                style: 'cancel'
-                            },
-                            {
-                                text: 'OK',
-                                onPress: () => dispatch(toggleFavorite(campsite.id))
-                            }
-                        ],
-                        { cancelable: false }
-                    )}  
+                            [
+                                {
+                                    text: 'Cancel',
+                                    onPress: () => console.log(campsite.name + 'Not Deleted'),
+                                    style: 'cancel'
+                                },
+                                {
+                                    text: 'OK',
+                                    onPress: () => dispatch(toggleFavorite(campsite.id))
+                                }
+                            ],
+                            { cancelable: false }
+                        )}
                     >
                         <Text style={styles.deleteText}>Delete</Text>
                     </TouchableOpacity>
@@ -77,13 +79,18 @@ const FavoritesScreen = ({ navigation }) => {
         );
     }
     return (
-        <FlatList
-            data={campsitesArray.filter((campsite) =>
-                favorites.includes(campsite.id)
-            )}
-            renderItem={renderFavoriteItem}
-            keyExtractor={(item) => item.id.toString()}
-        />
+        <Animatable.View
+            animation='fadeInRightBig'
+            duration={2000}
+        >
+            <FlatList
+                data={campsitesArray.filter((campsite) =>
+                    favorites.includes(campsite.id)
+                )}
+                renderItem={renderFavoriteItem}
+                keyExtractor={(item) => item.id.toString()}
+            />
+        </Animatable.View>
     );
 };
 
