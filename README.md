@@ -1,4 +1,4 @@
-# nucampsite-react
+# nucampsite-react-native
 
 Camping mobile app ft. React Native - Nucamp portfolio project
 
